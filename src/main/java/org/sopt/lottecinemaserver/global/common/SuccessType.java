@@ -6,7 +6,8 @@ public enum SuccessType {
     /**
      * 200 OK
      */
-    PROCESS_SUCCESS(HttpStatus.OK, "OK");
+    PROCESS_SUCCESS(HttpStatus.OK, "OK"),
+    GET_SCREEN_TIME_LIST_SUCCESS(HttpStatus.OK, "성공적으로 상영관,상영시간 리스트를 조회했습니다.");;
     private final HttpStatus httpStatus;
     private final String message;
 
