@@ -6,7 +6,8 @@ public enum SuccessType {
     /**
      * 200 OK
      */
-    PROCESS_SUCCESS(HttpStatus.OK, "OK");
+    PROCESS_SUCCESS(HttpStatus.OK, "OK"),
+    GET_REGION_LIST_SUCCESS(HttpStatus.OK, "지역 리스트가 성공적으로 조회되었습니다.");
     private final HttpStatus httpStatus;
     private final String message;
 
