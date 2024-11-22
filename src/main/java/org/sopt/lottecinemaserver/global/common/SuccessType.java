@@ -7,6 +7,7 @@ public enum SuccessType {
      * 200 OK
      */
     PROCESS_SUCCESS(HttpStatus.OK, "OK"),
+    GET_ONLY_MOVIE_LIST(HttpStatus.OK, "단독 영화가 성공적으로 조회되었습니다"),
     GET_POPULAR_MOVIE_LIST(HttpStatus.OK, "인기 영화가 성공적으로 조회되었습니다");
 
     private final HttpStatus httpStatus;
