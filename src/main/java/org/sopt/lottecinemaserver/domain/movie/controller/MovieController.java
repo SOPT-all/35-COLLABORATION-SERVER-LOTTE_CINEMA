@@ -4,15 +4,17 @@ import org.sopt.lottecinemaserver.domain.movie.dto.response.PopularMovieListResp
 import org.sopt.lottecinemaserver.domain.movie.service.MovieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api/v1/movie")
 public class MovieController {
     private final MovieService movieService;
     public MovieController(MovieService movieService){this.movieService = movieService;}
 
-    @GetMapping("/api/v1/movie/popular")
+    @GetMapping("/popular")
     ResponseEntity<ApiResponse<PopularMovieListResponse>> getPopularMovieList(@RequestParam String filter){
         //TODO filter validator
         return ResponseEntity.ok(

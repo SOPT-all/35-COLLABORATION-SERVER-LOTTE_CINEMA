@@ -22,6 +22,10 @@ public class Movie {
     @Column
     private Date releaseDate;
 
+    protected Movie(){
+
+    }
+
     public Long getId() {
         return id;
     }
