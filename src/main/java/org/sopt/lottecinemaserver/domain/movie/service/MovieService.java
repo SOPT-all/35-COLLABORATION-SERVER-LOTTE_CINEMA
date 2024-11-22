@@ -3,7 +3,7 @@ package org.sopt.lottecinemaserver.domain.movie.service;
 import jakarta.transaction.Transactional;
 import org.sopt.lottecinemaserver.domain.movie.dto.response.PopularMovieListResponse;
 import org.sopt.lottecinemaserver.domain.movie.dto.response.PopularMovieResponse;
-import org.sopt.lottecinemaserver.domain.movie.entity.Movie;
+import org.sopt.lottecinemaserver.domain.movie.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -17,9 +17,10 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public PopularMovieListResponse getMoviesByFilter(String filter) {
         List<PopularMovieResponse> movieResponses = movieRepository.findAll().stream()
+                .limit(4)
                 .map(movie -> new PopularMovieResponse(
                         movie.getTitle(),
                         movie.getShowtime(),
