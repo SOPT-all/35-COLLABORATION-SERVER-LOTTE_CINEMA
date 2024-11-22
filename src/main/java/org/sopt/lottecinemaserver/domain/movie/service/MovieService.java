@@ -1,13 +1,15 @@
 package org.sopt.lottecinemaserver.domain.movie.service;
 
 import jakarta.transaction.Transactional;
-import org.sopt.lottecinemaserver.domain.movie.dto.response.PopularMovieListResponse;
-import org.sopt.lottecinemaserver.domain.movie.dto.response.PopularMovieResponse;
+import org.sopt.lottecinemaserver.domain.movie.dto.response.MovieListResponse;
+import org.sopt.lottecinemaserver.domain.movie.dto.response.MovieResponse;
+import org.sopt.lottecinemaserver.domain.movie.entity.Movie;
 import org.sopt.lottecinemaserver.domain.movie.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,8 +19,7 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    @Transactional
-    public PopularMovieListResponse getMoviesByFilter(String filter) {
+    public MovieListResponse getMoviesByFilter(String filter) {
         return switch (filter){
             case "전체" -> get4AllMovies();
             case "상영중" -> get4ReleasedMovies();
@@ -27,11 +28,13 @@ public class MovieService {
         };
     }
 
-    @Transactional
-    private PopularMovieListResponse get4AllMovies(){
-        List<PopularMovieResponse> movieResponses = movieRepository.get4AllMovies()
+    public MovieListResponse getOnlyMovies() {
+        //임의로 단독 영화 4개 결정
+        List<Long> onlyIndex = List.of(1L,4L,7L,10L);
+
+        List<MovieResponse> movieResponses = movieRepository.findByIdIn(onlyIndex)
                 .stream()
-                .map(movie -> new PopularMovieResponse(
+                .map(movie -> new MovieResponse(
                         movie.getTitle(),
                         movie.getShowtime(),
                         movie.getRating(),
@@ -39,14 +42,14 @@ public class MovieService {
                 ))
                 .collect(Collectors.toList());
 
-        return new PopularMovieListResponse(movieResponses);
+        return new MovieListResponse(movieResponses);
     }
 
     @Transactional
-    private PopularMovieListResponse get4ReleasedMovies(){
-        List<PopularMovieResponse> movieResponses = movieRepository.get4ReleasedMovies(Date.valueOf(LocalDate.now()))
+    private MovieListResponse get4AllMovies(){
+        List<MovieResponse> movieResponses = movieRepository.get4AllMovies()
                 .stream()
-                .map(movie -> new PopularMovieResponse(
+                .map(movie -> new MovieResponse(
                         movie.getTitle(),
                         movie.getShowtime(),
                         movie.getRating(),
@@ -54,14 +57,14 @@ public class MovieService {
                 ))
                 .collect(Collectors.toList());
 
-        return new PopularMovieListResponse(movieResponses);
+        return new MovieListResponse(movieResponses);
     }
 
     @Transactional
-    private PopularMovieListResponse get4UnreleasedMovies(){
-        List<PopularMovieResponse> movieResponses = movieRepository.get4UnreleasedMovies(Date.valueOf(LocalDate.now()))
+    private MovieListResponse get4ReleasedMovies(){
+        List<MovieResponse> movieResponses = movieRepository.get4ReleasedMovies(Date.valueOf(LocalDate.now()))
                 .stream()
-                .map(movie -> new PopularMovieResponse(
+                .map(movie -> new MovieResponse(
                         movie.getTitle(),
                         movie.getShowtime(),
                         movie.getRating(),
@@ -69,6 +72,21 @@ public class MovieService {
                 ))
                 .collect(Collectors.toList());
 
-        return new PopularMovieListResponse(movieResponses);
+        return new MovieListResponse(movieResponses);
+    }
+
+    @Transactional
+    private MovieListResponse get4UnreleasedMovies(){
+        List<MovieResponse> movieResponses = movieRepository.get4UnreleasedMovies(Date.valueOf(LocalDate.now()))
+                .stream()
+                .map(movie -> new MovieResponse(
+                        movie.getTitle(),
+                        movie.getShowtime(),
+                        movie.getRating(),
+                        movie.getReleaseDate()
+                ))
+                .collect(Collectors.toList());
+
+        return new MovieListResponse(movieResponses);
     }
 }
