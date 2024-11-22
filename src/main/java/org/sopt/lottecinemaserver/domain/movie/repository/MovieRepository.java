@@ -17,4 +17,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query(value = "SELECT * FROM movie WHERE released_date > :released_date LIMIT 4", nativeQuery = true)
     List<Movie> get4UnreleasedMovies(@Param("released_date") Date released_date);
+
+    List<Movie> findByIdIn(List<Long> ids);
 }
