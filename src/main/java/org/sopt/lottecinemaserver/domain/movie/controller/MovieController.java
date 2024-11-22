@@ -1,5 +1,7 @@
 package org.sopt.lottecinemaserver.domain.movie.controller;
 
+import org.sopt.lottecinemaserver.domain.movie.dto.response.PopularMovieListResponse;
+import org.sopt.lottecinemaserver.domain.movie.service.MovieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

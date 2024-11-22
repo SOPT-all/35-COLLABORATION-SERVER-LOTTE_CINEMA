@@ -21,4 +21,24 @@ public class Movie {
 
     @Column
     private Date releaseDate;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getShowtime() {
+        return showtime;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
 }
