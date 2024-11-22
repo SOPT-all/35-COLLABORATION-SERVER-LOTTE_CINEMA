@@ -2,6 +2,8 @@ package org.sopt.lottecinemaserver.domain.movie.controller;
 
 import org.sopt.lottecinemaserver.domain.movie.dto.response.PopularMovieListResponse;
 import org.sopt.lottecinemaserver.domain.movie.service.MovieService;
+import org.sopt.lottecinemaserver.global.common.ApiResponse;
+import org.sopt.lottecinemaserver.global.common.SuccessType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
