@@ -45,4 +45,5 @@ public class Movie {
     public Date getReleaseDate() {
         return releaseDate;
     }
+
 }

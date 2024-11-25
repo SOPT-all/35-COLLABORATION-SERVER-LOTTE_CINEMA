@@ -3,13 +3,11 @@ package org.sopt.lottecinemaserver.domain.movie.service;
 import jakarta.transaction.Transactional;
 import org.sopt.lottecinemaserver.domain.movie.dto.response.MovieListResponse;
 import org.sopt.lottecinemaserver.domain.movie.dto.response.MovieResponse;
-import org.sopt.lottecinemaserver.domain.movie.entity.Movie;
 import org.sopt.lottecinemaserver.domain.movie.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,9 +28,9 @@ public class MovieService {
 
     public MovieListResponse getOnlyMovies() {
         //임의로 단독 영화 4개 결정
-        List<Long> onlyIndex = List.of(1L,4L,7L,10L);
+        List<Long> onlyIndex = List.of(1L,3L,5L,7L);
 
-        List<MovieResponse> movieResponses = movieRepository.findByIdIn(onlyIndex)
+        List<MovieResponse> movieResponses = movieRepository.findAllById(onlyIndex)
                 .stream()
                 .map(movie -> new MovieResponse(
                         movie.getTitle(),
@@ -41,14 +39,15 @@ public class MovieService {
                         movie.getReleaseDate()
                 ))
                 .collect(Collectors.toList());
-
+        System.out.println(movieResponses);
         return new MovieListResponse(movieResponses);
     }
 
     @Transactional
     private MovieListResponse get4AllMovies(){
-        List<MovieResponse> movieResponses = movieRepository.get4AllMovies()
+        List<MovieResponse> movieResponses = movieRepository.findAll()
                 .stream()
+                .limit(4)
                 .map(movie -> new MovieResponse(
                         movie.getTitle(),
                         movie.getShowtime(),
@@ -89,4 +88,6 @@ public class MovieService {
 
         return new MovieListResponse(movieResponses);
     }
+
+
 }
