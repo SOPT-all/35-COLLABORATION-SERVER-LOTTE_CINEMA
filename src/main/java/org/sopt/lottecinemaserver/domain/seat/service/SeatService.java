@@ -1,8 +1,8 @@
-package org.sopt.lottecinemaserver.domain.seats.service;
+package org.sopt.lottecinemaserver.domain.seat.service;
 
 import org.sopt.lottecinemaserver.domain.movie.entity.Movie;
 import org.sopt.lottecinemaserver.domain.movie.repository.MovieRepository;
-import org.sopt.lottecinemaserver.domain.seats.repository.SeatRepository;
+import org.sopt.lottecinemaserver.domain.seat.repository.SeatRepository;
 import org.springframework.stereotype.Service;
 
 @Service

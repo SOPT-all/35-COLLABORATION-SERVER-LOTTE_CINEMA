@@ -1,6 +1,6 @@
-package org.sopt.lottecinemaserver.domain.seats.controller;
+package org.sopt.lottecinemaserver.domain.seat.controller;
 
-import org.sopt.lottecinemaserver.domain.seats.service.SeatService;
+import org.sopt.lottecinemaserver.domain.seat.service.SeatService;
 import org.sopt.lottecinemaserver.global.common.ApiResponse;
 import org.sopt.lottecinemaserver.global.common.SuccessType;
 import org.springframework.http.ResponseEntity;
