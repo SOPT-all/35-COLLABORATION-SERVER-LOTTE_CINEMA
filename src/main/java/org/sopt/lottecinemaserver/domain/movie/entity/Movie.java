@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 public class Movie {
     @Id
+    @Column(name = "movie_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

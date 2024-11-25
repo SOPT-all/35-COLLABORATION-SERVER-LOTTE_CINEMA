@@ -1,5 +1,6 @@
 package org.sopt.lottecinemaserver.domain.seat.controller;
 
+import org.sopt.lottecinemaserver.domain.seat.dto.response.AvailableSeatsResponse;
 import org.sopt.lottecinemaserver.domain.seat.service.SeatService;
 import org.sopt.lottecinemaserver.global.common.ApiResponse;
 import org.sopt.lottecinemaserver.global.common.SuccessType;
@@ -15,9 +16,8 @@ public class SeatController {
     private final SeatService seatService;
     public SeatController(SeatService seatService){this.seatService = seatService;}
 
-    @GetMapping()
+    @GetMapping
     ResponseEntity<ApiResponse<AvailableSeatsResponse>> getAvailableSeat(@RequestParam String movie){
-        //TODO filter validator
         return ResponseEntity.ok(
                 ApiResponse.success(SuccessType.GET_AVAILABLE_SEATS, seatService.getAvailableSeats(movie))
         );
