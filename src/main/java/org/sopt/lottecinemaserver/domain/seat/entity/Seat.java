@@ -25,4 +25,8 @@ public class Seat {
     public String getReservedSeat() { return reservedSeat; }
 
     public Movie getMovie() { return movie; }
+
+    public void setReservedSeat(String reservedSeat) {
+        this.reservedSeat = reservedSeat;
+    }
 }
