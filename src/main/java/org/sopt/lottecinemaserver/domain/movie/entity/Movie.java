@@ -1,7 +1,10 @@
 package org.sopt.lottecinemaserver.domain.movie.entity;
 
 import jakarta.persistence.*;
+import org.sopt.lottecinemaserver.domain.seat.entity.Seat;
+
 import java.sql.Date;
+import java.util.List;
 //COMMENT
 
 @Entity
@@ -21,6 +24,9 @@ public class Movie {
 
     @Column
     private Date releaseDate;
+
+    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Seat> seatList;
 
     protected Movie(){
 
