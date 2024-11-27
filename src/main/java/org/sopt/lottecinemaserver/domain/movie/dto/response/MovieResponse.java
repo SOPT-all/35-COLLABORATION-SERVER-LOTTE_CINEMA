@@ -1,6 +1,10 @@
 package org.sopt.lottecinemaserver.domain.movie.dto.response;
 
+import org.sopt.lottecinemaserver.domain.movie.entity.Movie;
+
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MovieResponse {
     private final String title;
@@ -13,6 +17,17 @@ public class MovieResponse {
         this.showtime = showtime;
         this.rating = rating;
         this.released_date = released_date;
+    }
+
+    public static List<MovieResponse> movieListToResponseList(List<Movie> movieList){
+        return movieList.stream()
+                .map(movie -> new MovieResponse(
+                        movie.getTitle(),
+                        movie.getShowtime(),
+                        movie.getRating(),
+                        movie.getReleaseDate()
+                ))
+                .collect(Collectors.toList());
     }
 
     public String getTitle() {

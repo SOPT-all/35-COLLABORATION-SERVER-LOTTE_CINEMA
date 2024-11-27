@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.sopt.lottecinemaserver.domain.movie.dto.response.MovieResponse.movieListToResponseList;
+
 @Service
 public class MovieService {
     private final MovieRepository movieRepository;
@@ -44,46 +46,27 @@ public class MovieService {
 
     @Transactional
     private MovieListResponse get4AllMovies(){
-        List<MovieResponse> movieResponses = movieRepository.findAll()
-                .stream()
-                .limit(4)
-                .map(movie -> new MovieResponse(
-                        movie.getTitle(),
-                        movie.getShowtime(),
-                        movie.getRating(),
-                        movie.getReleaseDate()
-                ))
-                .collect(Collectors.toList());
+        List<MovieResponse> movieResponses = movieListToResponseList(
+                movieRepository.get4UnreleasedMovies(Date.valueOf(LocalDate.now()))
+        );
 
         return new MovieListResponse(movieResponses);
     }
 
     @Transactional
     private MovieListResponse get4ReleasedMovies(){
-        List<MovieResponse> movieResponses = movieRepository.get4ReleasedMovies(Date.valueOf(LocalDate.now()))
-                .stream()
-                .map(movie -> new MovieResponse(
-                        movie.getTitle(),
-                        movie.getShowtime(),
-                        movie.getRating(),
-                        movie.getReleaseDate()
-                ))
-                .collect(Collectors.toList());
+        List<MovieResponse> movieResponses = movieListToResponseList(
+                movieRepository.get4UnreleasedMovies(Date.valueOf(LocalDate.now()))
+        );
 
         return new MovieListResponse(movieResponses);
     }
 
     @Transactional
     private MovieListResponse get4UnreleasedMovies(){
-        List<MovieResponse> movieResponses = movieRepository.get4UnreleasedMovies(Date.valueOf(LocalDate.now()))
-                .stream()
-                .map(movie -> new MovieResponse(
-                        movie.getTitle(),
-                        movie.getShowtime(),
-                        movie.getRating(),
-                        movie.getReleaseDate()
-                ))
-                .collect(Collectors.toList());
+        List<MovieResponse> movieResponses = movieListToResponseList(
+                movieRepository.get4UnreleasedMovies(Date.valueOf(LocalDate.now()))
+        );
 
         return new MovieListResponse(movieResponses);
     }
