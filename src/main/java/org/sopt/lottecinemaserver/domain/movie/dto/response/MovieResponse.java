@@ -21,6 +21,7 @@ public class MovieResponse {
 
     public static List<MovieResponse> movieListToResponseList(List<Movie> movieList){
         return movieList.stream()
+                .limit(4)
                 .map(movie -> new MovieResponse(
                         movie.getTitle(),
                         movie.getShowtime(),
