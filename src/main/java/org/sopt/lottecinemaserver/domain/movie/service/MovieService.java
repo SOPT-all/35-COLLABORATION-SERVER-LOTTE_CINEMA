@@ -47,7 +47,7 @@ public class MovieService {
     @Transactional
     private MovieListResponse get4AllMovies(){
         List<MovieResponse> movieResponses = movieListToResponseList(
-                movieRepository.get4UnreleasedMovies(Date.valueOf(LocalDate.now()))
+                movieRepository.findAll()
         );
 
         return new MovieListResponse(movieResponses);
@@ -56,7 +56,7 @@ public class MovieService {
     @Transactional
     private MovieListResponse get4ReleasedMovies(){
         List<MovieResponse> movieResponses = movieListToResponseList(
-                movieRepository.get4UnreleasedMovies(Date.valueOf(LocalDate.now()))
+                movieRepository.get4ReleasedMovies(Date.valueOf(LocalDate.now()))
         );
 
         return new MovieListResponse(movieResponses);
