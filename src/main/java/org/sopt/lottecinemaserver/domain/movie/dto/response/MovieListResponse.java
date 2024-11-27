@@ -9,7 +9,7 @@ public class MovieListResponse {
         this.movieList = movieList;
     }
 
-    public List<MovieResponse> getPopularMovieList() {
+    public List<MovieResponse> getMovieList() {
         return movieList;
     }
 }
