@@ -39,7 +39,6 @@ public class MovieService {
                         movie.getReleaseDate()
                 ))
                 .collect(Collectors.toList());
-        System.out.println(movieResponses);
         return new MovieListResponse(movieResponses);
     }
 
