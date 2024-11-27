@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class SeatService {
@@ -28,8 +30,13 @@ public class SeatService {
 
     @Transactional
     public AvailableSeatsResponse getAvailableSeats(String movieTitle) {
-        Set<Integer> availableSeats = findAvailableSeats(movieTitle);
-        return new AvailableSeatsResponse(new ArrayList<>(availableSeats));
+        Set<Integer> reservedSeats = findReservedSeats(movieTitle);
+        System.out.println("teset");
+        List<Integer> availableSeats = IntStream.rangeClosed(1, 77)
+                .filter(num -> !reservedSeats.contains(num))
+                .boxed()
+                .toList();
+        return new AvailableSeatsResponse(availableSeats);
     }
 
     @Transactional
@@ -57,7 +64,7 @@ public class SeatService {
     }
 
     @Transactional
-    private Set<Integer> findAvailableSeats(String movieTitle){
+    private Set<Integer> findReservedSeats(String movieTitle){
         Movie movie = movieRepository.findByTitle(movieTitle);
         Seat seat = seatRepository.findByMovie(movie);
 
