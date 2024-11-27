@@ -1,7 +1,7 @@
 package org.sopt.lottecinemaserver.domain.screen.controller;
 
 import java.util.List;
-import org.sopt.lottecinemaserver.domain.screen.dto.ScreenListResponseDto;
+import org.sopt.lottecinemaserver.domain.screen.dto.ScreenResponseDto;
 import org.sopt.lottecinemaserver.domain.screen.service.ScreenService;
 import org.sopt.lottecinemaserver.global.common.ApiResponse;
 import org.sopt.lottecinemaserver.global.common.SuccessType;
@@ -22,7 +22,7 @@ public class ScreenController {
     }
 
     @GetMapping("/{theaterCount}")
-    public ResponseEntity<ApiResponse<List<ScreenListResponseDto>>> getScreenAndTimeList(
+    public ResponseEntity<ApiResponse<List<ScreenResponseDto>>> getScreenAndTimeList(
             @PathVariable final int theaterCount
     ) {
         return ResponseEntity.ok(

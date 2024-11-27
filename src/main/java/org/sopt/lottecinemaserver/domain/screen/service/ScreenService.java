@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.sopt.lottecinemaserver.domain.screen.domain.Screen;
-import org.sopt.lottecinemaserver.domain.screen.dto.ScreenListResponseDto;
+import org.sopt.lottecinemaserver.domain.screen.dto.ScreenResponseDto;
 import org.sopt.lottecinemaserver.domain.screen.dto.TimeResponse;
 import org.sopt.lottecinemaserver.domain.screen.repository.ScreenRepository;
 import org.springframework.stereotype.Service;
@@ -20,19 +20,19 @@ public class ScreenService {
     }
 
     @Transactional(readOnly = true)
-    public List<ScreenListResponseDto> getRandomScreens(int theaterCount) {
+    public List<ScreenResponseDto> getRandomScreens(int theaterCount) {
         List<Screen> allScreens = screenRepository.findAll();
 
         Collections.shuffle(allScreens);
         List<Screen> selectedScreens = allScreens.subList(0, theaterCount);
 
-        List<ScreenListResponseDto> response = new ArrayList<>();
+        List<ScreenResponseDto> response = new ArrayList<>();
         for (Screen screen : selectedScreens) {
             List<TimeResponse> timeResponses = new ArrayList<>();
             screen.getTimeList().forEach(time -> timeResponses.add(
                     new TimeResponse(time.getBeginTime(), time.getEntTime())
             ));
-            response.add(new ScreenListResponseDto(screen.getName(), screen.getSubname(),
+            response.add(new ScreenResponseDto(screen.getName(), screen.getSubname(),
                     screen.getDescription(), timeResponses));
         }
         return response;

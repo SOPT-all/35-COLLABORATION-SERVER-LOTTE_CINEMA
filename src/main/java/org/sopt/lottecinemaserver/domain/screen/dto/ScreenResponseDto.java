@@ -2,13 +2,13 @@ package org.sopt.lottecinemaserver.domain.screen.dto;
 
 import java.util.List;
 
-public class ScreenListResponseDto {
+public class ScreenResponseDto {
     private String name;
     private String subname;
     private String description;
     private List<TimeResponse> timesList;
 
-    public ScreenListResponseDto(String name, String subname, String description, List<TimeResponse> timesList) {
+    public ScreenResponseDto(String name, String subname, String description, List<TimeResponse> timesList) {
         this.name = name;
         this.subname = subname;
         this.description = description;
