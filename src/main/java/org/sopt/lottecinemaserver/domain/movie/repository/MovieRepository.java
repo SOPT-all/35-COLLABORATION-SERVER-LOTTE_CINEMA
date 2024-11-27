@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.util.List;
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
+    Movie findByTitle(String title);
 
     @Query(value = "SELECT * FROM movie WHERE release_date <= :release_date LIMIT 4", nativeQuery = true)
     List<Movie> get4ReleasedMovies(@Param("release_date") Date release_date);
