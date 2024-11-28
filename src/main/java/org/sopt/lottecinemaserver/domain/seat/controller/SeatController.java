@@ -1,7 +1,7 @@
 package org.sopt.lottecinemaserver.domain.seat.controller;
 
 import org.sopt.lottecinemaserver.domain.seat.dto.request.SeatReserveRequest;
-import org.sopt.lottecinemaserver.domain.seat.dto.response.AvailableSeatsResponse;
+import org.sopt.lottecinemaserver.domain.seat.dto.response.ReservedSeatsResponse;
 import org.sopt.lottecinemaserver.domain.seat.service.SeatService;
 import org.sopt.lottecinemaserver.global.common.ApiResponse;
 import org.sopt.lottecinemaserver.global.common.SuccessType;
@@ -17,9 +17,9 @@ public class SeatController {
     public SeatController(SeatService seatService){this.seatService = seatService;}
 
     @GetMapping
-    ResponseEntity<ApiResponse<AvailableSeatsResponse>> getAvailableSeat(@RequestParam String movie){
+    ResponseEntity<ApiResponse<ReservedSeatsResponse>> getAvailableSeat(@RequestParam String movie){
         return ResponseEntity.ok(
-                success(SuccessType.GET_AVAILABLE_SEATS, seatService.getAvailableSeats(movie))
+                success(SuccessType.GET_AVAILABLE_SEATS, seatService.getReservedSeats(movie))
         );
     }
 
