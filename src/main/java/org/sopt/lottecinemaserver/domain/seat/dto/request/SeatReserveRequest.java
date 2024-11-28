@@ -4,11 +4,11 @@ package org.sopt.lottecinemaserver.domain.seat.dto.request;
 import java.util.List;
 
 public class SeatReserveRequest {
-    private final String movie;
+    private final long movieId;
     private final List<Integer> seats;
 
-    public SeatReserveRequest(String movie, List<Integer> seats) {
-        this.movie = movie;
+    public SeatReserveRequest(long movieId, List<Integer> seats) {
+        this.movieId = movieId;
         this.seats = seats;
     }
 
@@ -16,7 +16,7 @@ public class SeatReserveRequest {
         return seats;
     }
 
-    public String getMovie() {
-        return movie;
+    public long getMovieId() {
+        return movieId;
     }
 }

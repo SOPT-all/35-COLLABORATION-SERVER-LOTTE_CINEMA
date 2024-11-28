@@ -27,14 +27,14 @@ public class SeatService {
     }
 
     @Transactional
-    public ReservedSeatsResponse getReservedSeats(String movieTitle) {
-        Set<Integer> reservedSeats = findReservedSeats(movieTitle);
+    public ReservedSeatsResponse getReservedSeats(long movieId) {
+        Set<Integer> reservedSeats = findReservedSeats(movieId);
         return new ReservedSeatsResponse(new ArrayList<>(reservedSeats));
     }
 
     @Transactional
-    public void reserveSeats(String movieTitle, List<Integer> seats){
-        Movie movie = movieRepository.findByTitle(movieTitle);
+    public void reserveSeats(long movieId, List<Integer> seats){
+        Movie movie = movieRepository.findById(movieId).orElseThrow();
         Seat seat = seatRepository.findByMovie(movie);
 
         try{
@@ -57,8 +57,8 @@ public class SeatService {
     }
 
     @Transactional
-    private Set<Integer> findReservedSeats(String movieTitle){
-        Movie movie = movieRepository.findByTitle(movieTitle);
+    private Set<Integer> findReservedSeats(long movieId){
+        Movie movie = movieRepository.findById(movieId).orElseThrow();
         Seat seat = seatRepository.findByMovie(movie);
 
         try{
