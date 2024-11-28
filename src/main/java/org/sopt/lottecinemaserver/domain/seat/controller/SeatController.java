@@ -1,5 +1,6 @@
 package org.sopt.lottecinemaserver.domain.seat.controller;
 
+import java.util.List;
 import org.sopt.lottecinemaserver.domain.seat.dto.request.SeatReserveRequest;
 import org.sopt.lottecinemaserver.domain.seat.dto.response.ReservedSeatsResponse;
 import org.sopt.lottecinemaserver.domain.seat.service.SeatService;
@@ -17,7 +18,7 @@ public class SeatController {
     public SeatController(SeatService seatService){this.seatService = seatService;}
 
     @GetMapping
-    ResponseEntity<ApiResponse<ReservedSeatsResponse>> getAvailableSeat(@RequestParam long movieId){
+    ResponseEntity<ApiResponse<List<Integer>>> getAvailableSeat(@RequestParam long movieId){
         return ResponseEntity.ok(
                 success(SuccessType.GET_AVAILABLE_SEATS, seatService.getReservedSeats(movieId))
         );
