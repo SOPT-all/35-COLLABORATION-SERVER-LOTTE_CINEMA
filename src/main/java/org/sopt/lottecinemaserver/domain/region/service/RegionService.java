@@ -19,7 +19,7 @@ public class RegionService {
     @Transactional(readOnly = true)
     public RegionListResponse getRegions() {
         List<RegionResponse> regionResponses = regionRepository.findAll().stream()
-                .map(region -> new RegionResponse(region.getName(), region.getTheaterCount()))
+                .map(region -> new RegionResponse(region.getId(), region.getName(), region.getTheaterCount()))
                 .collect(Collectors.toList());
         return new RegionListResponse(regionResponses);
     }
