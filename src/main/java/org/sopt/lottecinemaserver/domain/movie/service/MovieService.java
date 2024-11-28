@@ -35,6 +35,7 @@ public class MovieService {
         List<MovieResponse> movieResponses = movieRepository.findAllById(onlyIndex)
                 .stream()
                 .map(movie -> new MovieResponse(
+                        movie.getId(),
                         movie.getTitle(),
                         movie.getShowtime(),
                         movie.getRating(),

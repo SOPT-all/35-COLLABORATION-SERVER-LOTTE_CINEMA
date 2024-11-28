@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MovieResponse {
+    private final long movieId;
     private final String title;
     private final int showtime;
     private final String rating;
@@ -14,7 +15,8 @@ public class MovieResponse {
     private final String imageUrl;
     private final String reservedRate;
 
-    public MovieResponse(String title, int showtime, String rating, Date releasedDate, String imageUrl, String reservedRate){
+    public MovieResponse(long movieId, String title, int showtime, String rating, Date releasedDate, String imageUrl, String reservedRate) {
+        this.movieId = movieId;
         this.title = title;
         this.showtime = showtime;
         this.rating = rating;
@@ -23,10 +25,12 @@ public class MovieResponse {
         this.reservedRate = reservedRate;
     }
 
+
     public static List<MovieResponse> movieListToResponseList(List<Movie> movieList){
         return movieList.stream()
                 .limit(4)
                 .map(movie -> new MovieResponse(
+                        movie.getId(),
                         movie.getTitle(),
                         movie.getShowtime(),
                         movie.getRating(),
@@ -37,6 +41,7 @@ public class MovieResponse {
                 .collect(Collectors.toList());
     }
 
+    public long getMovieId() {return movieId;}
     public String getTitle() {
         return title;
     }

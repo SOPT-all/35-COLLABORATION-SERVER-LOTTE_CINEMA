@@ -17,15 +17,15 @@ public class SeatController {
     public SeatController(SeatService seatService){this.seatService = seatService;}
 
     @GetMapping
-    ResponseEntity<ApiResponse<ReservedSeatsResponse>> getAvailableSeat(@RequestParam String movie){
+    ResponseEntity<ApiResponse<ReservedSeatsResponse>> getAvailableSeat(@RequestParam long movieId){
         return ResponseEntity.ok(
-                success(SuccessType.GET_AVAILABLE_SEATS, seatService.getReservedSeats(movie))
+                success(SuccessType.GET_AVAILABLE_SEATS, seatService.getReservedSeats(movieId))
         );
     }
 
     @PostMapping
     ResponseEntity<ApiResponse> reserveSeat(@RequestBody SeatReserveRequest request){
-        seatService.reserveSeats(request.getMovie(), request.getSeats());
+        seatService.reserveSeats(request.getMovieId(), request.getSeats());
 
         return ResponseEntity.ok(
                 success(SuccessType.POST_RESERVE_SEATS)
