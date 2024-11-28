@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.sopt.lottecinemaserver.domain.movie.entity.Movie;
 import org.sopt.lottecinemaserver.domain.movie.repository.MovieRepository;
-import org.sopt.lottecinemaserver.domain.seat.dto.response.AvailableSeatsResponse;
+import org.sopt.lottecinemaserver.domain.seat.dto.response.ReservedSeatsResponse;
 import org.sopt.lottecinemaserver.domain.seat.entity.Seat;
 import org.sopt.lottecinemaserver.domain.seat.repository.SeatRepository;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Service
 public class SeatService {
@@ -29,14 +27,9 @@ public class SeatService {
     }
 
     @Transactional
-    public AvailableSeatsResponse getAvailableSeats(String movieTitle) {
+    public ReservedSeatsResponse getReservedSeats(String movieTitle) {
         Set<Integer> reservedSeats = findReservedSeats(movieTitle);
-        System.out.println("teset");
-        List<Integer> availableSeats = IntStream.rangeClosed(1, 77)
-                .filter(num -> !reservedSeats.contains(num))
-                .boxed()
-                .toList();
-        return new AvailableSeatsResponse(availableSeats);
+        return new ReservedSeatsResponse(new ArrayList<>(reservedSeats));
     }
 
     @Transactional

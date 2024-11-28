@@ -2,10 +2,10 @@ package org.sopt.lottecinemaserver.domain.seat.dto.response;
 
 import java.util.List;
 
-public class AvailableSeatsResponse {
+public class ReservedSeatsResponse {
     private final List<Integer> seatList;
 
-    public AvailableSeatsResponse(List<Integer> seatList) {
+    public ReservedSeatsResponse(List<Integer> seatList) {
         this.seatList = seatList;
     }
 

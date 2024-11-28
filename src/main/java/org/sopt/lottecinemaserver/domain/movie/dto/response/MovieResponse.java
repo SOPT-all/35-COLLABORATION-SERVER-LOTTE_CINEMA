@@ -10,13 +10,17 @@ public class MovieResponse {
     private final String title;
     private final int showtime;
     private final String rating;
-    private final Date released_date;
+    private final Date releasedDate;
+    private final String imageUrl;
+    private final String reservedRate;
 
-    public MovieResponse(String title, int showtime, String rating, Date released_date){
+    public MovieResponse(String title, int showtime, String rating, Date releasedDate, String imageUrl, String reservedRate){
         this.title = title;
         this.showtime = showtime;
         this.rating = rating;
-        this.released_date = released_date;
+        this.releasedDate = releasedDate;
+        this.imageUrl = imageUrl;
+        this.reservedRate = reservedRate;
     }
 
     public static List<MovieResponse> movieListToResponseList(List<Movie> movieList){
@@ -26,7 +30,9 @@ public class MovieResponse {
                         movie.getTitle(),
                         movie.getShowtime(),
                         movie.getRating(),
-                        movie.getReleaseDate()
+                        movie.getReleaseDate(),
+                        movie.getImageUrl(),
+                        movie.getReservedRate()
                 ))
                 .collect(Collectors.toList());
     }
@@ -40,7 +46,9 @@ public class MovieResponse {
     public String getRating() {
         return rating;
     }
-    public Date getReleased_date() {
-        return released_date;
+    public Date getReleasedDate() {
+        return releasedDate;
     }
+    public String getImageUrl() {return imageUrl;}
+    public String getReservedRate() {return reservedRate;}
 }
