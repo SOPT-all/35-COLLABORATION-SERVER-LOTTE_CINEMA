@@ -2,7 +2,6 @@ package org.sopt.lottecinemaserver.domain.seat.controller;
 
 import java.util.List;
 import org.sopt.lottecinemaserver.domain.seat.dto.request.SeatReserveRequest;
-import org.sopt.lottecinemaserver.domain.seat.dto.response.ReservedSeatsResponse;
 import org.sopt.lottecinemaserver.domain.seat.service.SeatService;
 import org.sopt.lottecinemaserver.global.common.ApiResponse;
 import org.sopt.lottecinemaserver.global.common.SuccessType;
@@ -25,7 +24,7 @@ public class SeatController {
         );
     }
 
-    @PostMapping
+    @PostMapping("/reserve")
     ResponseEntity<ApiResponse<?>> reserveSeat(@RequestBody SeatReserveRequest request){
         seatService.reserveSeats(request.movieId(), request.seats());
 
