@@ -27,7 +27,7 @@ public class SeatController {
 
     @PostMapping
     ResponseEntity<ApiResponse<?>> reserveSeat(@RequestBody SeatReserveRequest request){
-        seatService.reserveSeats(request.getMovieId(), request.getSeats());
+        seatService.reserveSeats(request.movieId(), request.seats());
 
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(SuccessType.POST_RESERVE_SEATS));
     }
