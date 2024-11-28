@@ -38,7 +38,9 @@ public class MovieService {
                         movie.getTitle(),
                         movie.getShowtime(),
                         movie.getRating(),
-                        movie.getReleaseDate()
+                        movie.getReleaseDate(),
+                        movie.getImageUrl(),
+                        movie.getReservedRate()
                 ))
                 .collect(Collectors.toList());
         return new MovieListResponse(movieResponses);

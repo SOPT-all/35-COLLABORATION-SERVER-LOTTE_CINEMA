@@ -26,6 +26,12 @@ public class Movie {
     @Column
     private Date releaseDate;
 
+    @Column
+    private String imageUrl;
+
+    @Column
+    private String reservedRate;
+
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Seat> seatList;
 
@@ -53,4 +59,7 @@ public class Movie {
         return releaseDate;
     }
 
+    public String getImageUrl() { return imageUrl; }
+
+    public String getReservedRate() { return reservedRate; }
 }
