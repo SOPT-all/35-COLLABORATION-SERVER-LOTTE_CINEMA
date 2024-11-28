@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.sopt.lottecinemaserver.domain.movie.entity.Movie;
 
 @Entity
+@Table(name = "seat")
 public class Seat {
 
     @Id
@@ -18,7 +19,7 @@ public class Seat {
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    Seat(){ }
+    protected Seat(){ }
 
     public Long getId() { return id; }
 
