@@ -6,6 +6,7 @@ import org.sopt.lottecinemaserver.domain.seat.dto.response.ReservedSeatsResponse
 import org.sopt.lottecinemaserver.domain.seat.service.SeatService;
 import org.sopt.lottecinemaserver.global.common.ApiResponse;
 import org.sopt.lottecinemaserver.global.common.SuccessType;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,6 @@ public class SeatController {
     ResponseEntity<ApiResponse<?>> reserveSeat(@RequestBody SeatReserveRequest request){
         seatService.reserveSeats(request.getMovieId(), request.getSeats());
 
-        return ResponseEntity.ok(
-                success(SuccessType.POST_RESERVE_SEATS)
-        );
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(SuccessType.POST_RESERVE_SEATS));
     }
 }
