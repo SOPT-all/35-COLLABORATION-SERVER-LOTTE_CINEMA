@@ -25,12 +25,11 @@ public class SeatController {
     }
 
     @PostMapping
-    ResponseEntity<ApiResponse> reserveSeat(@RequestBody SeatReserveRequest request){
+    ResponseEntity<ApiResponse<?>> reserveSeat(@RequestBody SeatReserveRequest request){
         seatService.reserveSeats(request.getMovieId(), request.getSeats());
 
         return ResponseEntity.ok(
                 success(SuccessType.POST_RESERVE_SEATS)
         );
     }
-
 }
